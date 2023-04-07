@@ -5,9 +5,12 @@ import '@/styles/globals.css';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-  <Layout>
-    return <Component {...pageProps} />
-  </Layout>
+  <>
+    <Modal /> 
+    <Layout>
+      return <Component {...pageProps} />
+    </Layout>
+  </>
   )
 }
 
