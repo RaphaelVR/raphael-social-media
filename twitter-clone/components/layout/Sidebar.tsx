@@ -20,11 +20,13 @@ const Sidebar = () => {
         label: 'Notifications',
         href: '/notifications',
         icon: FaUser,
+        auth: true,
     },
     {
         label: 'Profile',
         href: '/user/123',
         icon: BsBellFill,
+        auth: true,
     }
 
 ]
@@ -39,13 +41,14 @@ const Sidebar = () => {
                         href={item.href}
                         label={item.label}
                         icon={item.icon} 
+                        auth={item.auth}
                     />
                 ))}
                 {/* <Sidebar onClick={() => {}} icon={BiLogOut} label='Logout'  /> */}
-                {}
-                {currentUser && (
+                {/* {console.log(currentUser)} */}
+                {/* {currentUser && ( */}
                     <SidebarItem onClick={() => signOut()} icon={BiLogOut} label="Logout" />
-                )}
+                {/* )} */}
                 <SidebarTweetButton />
             </div>
         </div>
