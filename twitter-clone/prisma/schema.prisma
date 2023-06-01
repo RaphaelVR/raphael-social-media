@@ -25,6 +25,7 @@ model User {
   updatedAt       DateTime @updatedAt
   followingIds    String[] @db.ObjectId
   hasNotification Boolean?
+
   posts         Post[]
   comments      Comment[]
   notifications Notification[]
@@ -40,6 +41,7 @@ model Post {
   image              String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   comments          Comment[]
 }
 
@@ -60,6 +62,6 @@ model Notification {
   body               String
   userId             String @db.ObjectId
   createdAt          DateTime @default(now())
-  
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

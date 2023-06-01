@@ -44,11 +44,8 @@ const Sidebar = () => {
                         auth={item.auth}
                     />
                 ))}
-                {/* <Sidebar onClick={() => {}} icon={BiLogOut} label='Logout'  /> */}
                 {/* {console.log(currentUser)} */}
-                {/* {currentUser && ( */}
-                    <SidebarItem onClick={() => signOut()} icon={BiLogOut} label="Logout" />
-                {/* )} */}
+                {currentUser && <SidebarItem onClick={() => signOut()} icon={BiLogOut} label="Logout" />}
                 <SidebarTweetButton />
             </div>
         </div>
