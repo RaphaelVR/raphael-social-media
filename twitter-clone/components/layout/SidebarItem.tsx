@@ -21,7 +21,6 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ label, href, icon: Icon, onCl
     if(onClick) {
       return onClick();      
     }
-
     if (auth && !currentUser) {
       loginModal.onOpen
     } else if(href) {
