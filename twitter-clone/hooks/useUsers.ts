@@ -2,8 +2,8 @@ import useSWR from 'swr';
 
 import fetcher from '@/libs/fetcher';
 
-const useUsers = (userId: string) => {
-  const { data, error, isLoading, mutate } = useSWR('/api/users/$userId', fetcher);
+const useUsers = () => {
+  const { data, error, isLoading, mutate } = useSWR('/api/users', fetcher);
 
   return {
     data,
