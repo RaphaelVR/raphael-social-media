@@ -15,18 +15,19 @@ interface SidebarItemProps {
 const SidebarItem: React.FC<SidebarItemProps> = ({ label, href, icon: Icon, onClick, auth }) => {
 
   const loginModal = useLoginModal();
-  const {data: currentUser } = useCurrentUser();
+  const { data: currentUser } = useCurrentUser();
   const router = useRouter();
   const handleClick = useCallback(() => {
     if(onClick) {
       return onClick();      
     }
+
     if (auth && !currentUser) {
-      loginModal.onOpen
-    } else if(href) {
-    router.push(href);
+      loginModal.onOpen();
+    } else if (href) {
+      router.push(href);
     }
-  }, [router, onClick, href, auth, currentUser, loginModal]);
+  }, [router, href, auth, loginModal, onClick, currentUser]);
 
 
   return (

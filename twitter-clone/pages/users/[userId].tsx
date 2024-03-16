@@ -20,7 +20,7 @@ const UserView = () => {
         <ClipLoader color="lightblue" size={80} />
       </div>
     )
-  }
+  }  
 
   return (
     <>

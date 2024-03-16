@@ -11,9 +11,10 @@ interface AvatarProps {
 }
 
 const Avatar: React.FC<AvatarProps> = ({ userId, isLarge, hasBorder }) => {
-  const router = useRouter();
+  const router = useRouter();  
 
   const { data: fetchedUser } = useUser(userId);
+  // console.log(userId, fetchedUser); 
 
   const onClick = useCallback((event: any) => {
     event.stopPropagation();

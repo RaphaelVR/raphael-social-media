@@ -7,7 +7,7 @@ const FollowBar = () => {
 
   if (users.length === 0) {
     return null;
-  }
+  }    
 
   return (
     <div className="px-6 py-4 hidden lg:block">
@@ -25,7 +25,7 @@ const FollowBar = () => {
                     </p>
                     <p className="text-neutral-400 text-sm">
                       @{user.username}
-                    </p>
+                    </p>                    
                   </div>
                 </div>
               ))}
