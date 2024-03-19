@@ -1,8 +1,12 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
+import axios from "axios";
+import useSWR from "swr";
 
 import useUser from "@/hooks/useUser";
+import fetcher from "@/libs/fetcher";
+import useUsers from "@/hooks/useUsers";
 
 interface AvatarProps {
   userId: string;
@@ -13,8 +17,10 @@ interface AvatarProps {
 const Avatar: React.FC<AvatarProps> = ({ userId, isLarge, hasBorder }) => {
   const router = useRouter();  
 
-  const { data: fetchedUser } = useUser(userId);
-  // console.log(userId, fetchedUser); 
+  const { data: fetchedUser } = useUser(userId as string);
+  
+  console.log(fetchedUser); 
+  
 
   const onClick = useCallback((event: any) => {
     event.stopPropagation();
@@ -22,7 +28,7 @@ const Avatar: React.FC<AvatarProps> = ({ userId, isLarge, hasBorder }) => {
     const url = `/users/${userId}`;
 
     router.push(url);
-  }, [router, userId]);
+  }, [userId, router]);
 
   return (
     <div
