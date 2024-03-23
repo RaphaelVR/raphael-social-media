@@ -8,6 +8,7 @@ import useUser from "@/hooks/useUser";
 import fetcher from "@/libs/fetcher";
 import useUsers from "@/hooks/useUsers";
 
+
 interface AvatarProps {
   userId: string;
   isLarge?: boolean;
@@ -18,9 +19,6 @@ const Avatar: React.FC<AvatarProps> = ({ userId, isLarge, hasBorder }) => {
   const router = useRouter();  
 
   const { data: fetchedUser } = useUser(userId as string);
-  
-  console.log(fetchedUser); 
-  
 
   const onClick = useCallback((event: any) => {
     event.stopPropagation();
