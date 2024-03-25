@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from "next";
-
 import prisma from '@/libs/prismadb';
 import serverAuth from "@/libs/serverAuth";
 
@@ -9,9 +8,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const { userId } = req.body;
-
     const { currentUser } = await serverAuth(req, res);
+
+    let userId;
+
+    if (req.method === 'POST') {
+      userId = req.body.userId;
+    } else if (req.method === 'DELETE') {
+      userId = req.query.userId; // Extract userId from query parameters
+    }
 
     if (!userId || typeof userId !== 'string') {
       throw new Error('Invalid ID');
@@ -30,7 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     let updatedFollowingIds = [...(user.followingIds || [])];
 
     if (req.method === 'POST') {
-      updatedFollowingIds.push(userId);      
+      updatedFollowingIds.push(userId);
     }
 
     if (req.method === 'DELETE') {
