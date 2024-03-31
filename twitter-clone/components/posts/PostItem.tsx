@@ -21,7 +21,7 @@ const PostItem: React.FC<PostItemProps> = ({data = {}, userId }) => {
         event.preventDefault();
 
         router.push(`/users/${data.user.id}`);    
-    }, [router, data.user.id]);
+    }, [router, data.user?.id]);
 
     const goToPost = useCallback(() => {
         router.push(`/posts/${data.id}`);
@@ -52,7 +52,7 @@ const PostItem: React.FC<PostItemProps> = ({data = {}, userId }) => {
           transition
         ">
         <div className="flex flex-row items-start gap-3">
-          <Avatar userId={data.user.id} />
+          <Avatar userId={data.user?.id} />
           <div>
             <div className="flex flex-row items-center gap-2">
               <p 
@@ -63,7 +63,7 @@ const PostItem: React.FC<PostItemProps> = ({data = {}, userId }) => {
                   cursor-pointer 
                   hover:underline
               ">
-                {data.user.name}
+                {data.user?.name}
               </p>
               <span 
                 onClick={goToUser} 
@@ -74,7 +74,7 @@ const PostItem: React.FC<PostItemProps> = ({data = {}, userId }) => {
                   hidden
                   md:block
               ">
-                @{data.user.username}
+                @{data.user?.username}
               </span>
               <span className="text-neutral-500 text-sm">
                 {createdAt}
@@ -114,7 +114,7 @@ const PostItem: React.FC<PostItemProps> = ({data = {}, userId }) => {
               ">
                 <AiOutlineHeart size={20} />
                 <p>
-                  {data.likedIds.length}
+                  {data.likedIds?.length}
                 </p>
               </div>
             </div>

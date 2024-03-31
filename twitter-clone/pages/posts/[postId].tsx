@@ -11,8 +11,9 @@ const PostView = () => {
     const { postId } = router.query;
 
     const { data: fetchedPost, isLoading } = usePost(postId as string);
+    console.log(fetchedPost);
 
-    if (isLoading || fetchedPost) {
+    if (isLoading || !fetchedPost) {
         return (
             <div className="flex justify-center items-center h-full">
                 <ClipLoader />
@@ -23,7 +24,7 @@ const PostView = () => {
 return (
     <>
             <Header label='Tweet' showBackArrow />
-            <PostItem data={fetchedPost} userId={fetchedPost.user.id} />
+            <PostItem data={fetchedPost} userId={fetchedPost.user?.id}  />
             <Form
                     postId = {postId as string}
                     isComment
