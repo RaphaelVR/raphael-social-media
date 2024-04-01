@@ -20,7 +20,7 @@ const useLike = ({postId, userId}: {postId: string, userId?: string}) => {
         return list.includes(currentUser?.id);
     }, [currentUser?.id, fetchedPost?.likedIds]);
 
-    const toogleLike = useCallback(async () => {
+    const toggleLike = useCallback(async () => {
         if (!currentUser) {
             return loginModal.onOpen();
         }
@@ -54,7 +54,7 @@ const useLike = ({postId, userId}: {postId: string, userId?: string}) => {
 
     return {
         hasLiked,
-        toogleLike
+        toggleLike
     }
 };
 

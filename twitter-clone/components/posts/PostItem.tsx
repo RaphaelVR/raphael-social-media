@@ -4,7 +4,8 @@ import { useRouter } from "next/router";
 import { useCallback, useMemo } from "react";
 import { formatDistanceToNowStrict } from "date-fns";
 import Avatar from "../Avatar";
-import { AiOutlineHeart, AiOutlineMessage } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart, AiOutlineMessage } from "react-icons/ai";
+import useLike from "@/hooks/useLike";
 
 interface PostItemProps {
     data: Record<string, any>;
@@ -16,6 +17,7 @@ const PostItem: React.FC<PostItemProps> = ({data = {}, userId }) => {
     const loginModal = useLoginModal();
 
     const { data: currentUser } = useCurrentUser();
+    const { hasLiked, toggleLike } = useLike({ postId: data.id, userId });
 
     const goToUser = useCallback((event: any) => {
         event.preventDefault();
@@ -27,18 +29,24 @@ const PostItem: React.FC<PostItemProps> = ({data = {}, userId }) => {
         router.push(`/posts/${data.id}`);
     }, [router, data.id]);
 
-    const onLike = useCallback((event: any) => {
-        event.preventDefault();
-        loginModal.onOpen();
-    }, [loginModal]);               
+    const onLike = useCallback((event: any) => {        
+      event.preventDefault();
+        if (!currentUser) {
+          loginModal.onOpen();
+        }
+        
+        toggleLike();        
+    }, [loginModal, currentUser, toggleLike]);               
 
     const createdAt = useMemo(() => {
         if (!data?.createdAt) {
             return null;
-        }
+        }      
 
         return formatDistanceToNowStrict(new Date(data.createdAt));
     }, [data?.createdAt]);
+
+    const LikeIcon = hasLiked ? AiFillHeart : AiOutlineHeart;
 
     return (
         <div 
@@ -112,7 +120,7 @@ const PostItem: React.FC<PostItemProps> = ({data = {}, userId }) => {
                   transition 
                   hover:text-red-500
               ">
-                <AiOutlineHeart size={20} />
+                <LikeIcon size={20} color={hasLiked ? 'red' : ''}/>
                 <p>
                   {data.likedIds?.length}
                 </p>
