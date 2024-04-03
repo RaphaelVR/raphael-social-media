@@ -77,23 +77,20 @@ const EditModal = () => {
                         label="Upload cover image"
                     />
                     <Input 
-                        placeholder="Name"
-                        onChange={(e) => setName(e.target.value)}
-                        value={name}
-                        disabled={isLoading} 
-                    />
+                    placeholder="Name"
+                    onChange={(e) => setName(e.target.value)}
+                    value={name}
+                    disabled={isLoading} type={""}                    />
                     <Input 
-                        placeholder="Username"
-                        onChange={(e) => setUsername(e.target.value)}
-                        value={username}
-                        disabled={isLoading}
-                    />
+                    placeholder="Username"
+                    onChange={(e) => setUsername(e.target.value)}
+                    value={username}
+                    disabled={isLoading} type={""}                    />
                     <Input 
-                        placeholder="Bio"
-                        onChange={(e) => setBio(e.target.value)}
-                        value={bio}
-                        disabled={isLoading}
-                    />
+                    placeholder="Bio"
+                    onChange={(e) => setBio(e.target.value)}
+                    value={bio}
+                    disabled={isLoading} type={""}                    />
     
                 </div>
         );
